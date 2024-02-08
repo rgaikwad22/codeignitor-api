@@ -1,0 +1,45 @@
+<section class="form-section">
+    <div class="wrapper">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" formControlName="name">
+                <div *ngIf="myForm.get('name')?.hasError('required') && myForm.get('name')?.touched">
+                    Name is required.
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" formControlName="email">
+                <div *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched">
+                    Email is required.
+                </div>
+                <div *ngIf="myForm.get('email')?.hasError('email') && myForm.get('email')?.touched">
+                    Invalid email address.
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" formControlName="password">
+                <div *ngIf="myForm.get('password')?.hasError('required') && myForm.get('password')?.touched">
+                    Password is required.
+                </div>
+                <div *ngIf="myForm.get('password')?.hasError('minlength') && myForm.get('password')?.touched">
+                    Password must be at least 6 characters.
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="number" id="phone" formControlName="phone">
+                <div *ngIf="myForm.get('file')?.hasError('required') && myForm.get('file')?.touched">
+                    File is required.
+                </div>
+            </div>
+        
+            <button type="submit" [disabled]="myForm.invalid">Submit</button>
+        </form>
+    </div>
+</section>
